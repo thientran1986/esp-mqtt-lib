@@ -5,9 +5,15 @@
 #include <PubSubClient.h>
 #include <ESP8266WiFi.h>
 
+#ifndef __PUB_SUB_CALLBACK__
+  #define __PUB_SUB_CALLBACK__
+  void callback(char* topic, byte* payload, unsigned int length);
+#endif
+
+
 class GenericEspSketch{
 public:
-  GenericEspSketch(char*wifiSSID, char*wifiPassword, char*devicePath);
+  GenericEspSketch(String mqttServer, char mqttPort, String mqttClientName, String wifiSSID, String wifiPassword, String devicePath);
   ~GenericEspSketch();
   virtual void setup();
   virtual void loop();
@@ -15,12 +21,16 @@ public:
   void initializeWifi();
   void initializeEspPubSubClient();
   void setDebug(bool debug);
-  bool getDebug();
+  bool isDebug();
 protected:
+  void reconnect();
   bool debug;
-  char* wifiSSID;
-  char* wifiPassword;
-  char* devicePath;
+  String mqttServer;
+  char mqttPort;
+  String mqttClientName;
+  String wifiSSID;
+  String wifiPassword;
+  String devicePath;
   WiFiClient espClient;
   PubSubClient* client;
 };
