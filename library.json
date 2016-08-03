@@ -19,6 +19,14 @@
         "*.h",
         "examples/*"
     ],
+    "version": "1.0.0",
+    "dependencies":
+    [
+      {
+        "name": "PubSubClient",
+        "frameworks": "arduino"
+      }
+    ],
     "frameworks": "arduino",
     "platforms": "espressif"
 }
