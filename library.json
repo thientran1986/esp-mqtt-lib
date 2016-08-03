@@ -1,0 +1,24 @@
+{
+    "name": "EspMqttLib",
+    "keywords": "esp8266, mqtt",
+    "description": "Generic implementation using ESP8266 & MQTT",
+    "authors":
+    {
+        "name": "Thien Tran",
+        "email": "thientran1986@gmail.com",
+        "url": "https://github.com/thientran1986"
+    },
+    "repository":
+    {
+        "type": "git",
+        "url": "https://github.com/thientran1986/esp-mqtt-lib.git"
+    },
+    "include":
+    [
+        "*.[ch]pp",
+        "*.h"
+        "examples/*",
+    ],
+    "frameworks": "arduino",
+    "platforms": "espressif"
+}
