@@ -16,8 +16,8 @@
     "include":
     [
         "*.[ch]pp",
-        "*.h"
-        "examples/*",
+        "*.h",
+        "examples/*"
     ],
     "frameworks": "arduino",
     "platforms": "espressif"
