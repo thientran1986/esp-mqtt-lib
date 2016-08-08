@@ -68,8 +68,9 @@ void EspMQTTSketch::initializeWifi(){
   WiFi.begin(this->wifiSSID.c_str(), this->wifiPassword.c_str());
 
   while (WiFi.status() != WL_CONNECTED) {
-    delay(500);
-    Serial.print(".");
+    Serial.println("Connection Failed! Rebooting...");
+    delay(5000);
+    ESP.restart();
   }
 
   Serial.println("");
