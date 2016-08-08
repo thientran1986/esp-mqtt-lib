@@ -1,6 +1,7 @@
 #include "EspMQTTSketch.h"
 
 extern EspMQTTSketch esp;
+extern char serialPort;
 
 EspMQTTSketch::EspMQTTSketch(String mqttServer, char mqttPort, String mqttClientName, String wifiSSID, String wifiPassword, String mqttTopic){
   this->mqttServer = mqttServer;
@@ -25,7 +26,7 @@ bool EspMQTTSketch::isDebug(){
 }
 
 void EspMQTTSketch::setup(){
-  Serial.begin(115200);
+  Serial.begin(serialPort);
   this->initializeWifi();
   this->initializeEspPubSubClient();
 }
@@ -91,8 +92,10 @@ void callback(char* topic, byte* payload, unsigned int length) {
     for (int i = 0; i < length; i++) {
       Serial.print((char)payload[i]);
     }
+    // Parsing Message
     Serial.println();
   }
+  esp.onMessage();
 }
 
 void EspMQTTSketch::onMessage(){

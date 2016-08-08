@@ -7,7 +7,6 @@
 ## *Sample Code*
 
 ```
-#!c
     #include <EspMQTTSketch.h>
 
     #define MQTT_SERVER "192.168.0.0"
