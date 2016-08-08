@@ -11,10 +11,10 @@
 #endif
 
 
-class GenericEspSketch{
+class EspMQTTSketch{
 public:
-  GenericEspSketch(String mqttServer, char mqttPort, String mqttClientName, String wifiSSID, String wifiPassword, String devicePath);
-  ~GenericEspSketch();
+  EspMQTTSketch(String mqttServer, char mqttPort, String mqttClientName, String wifiSSID, String wifiPassword, String devicePath);
+  ~EspMQTTSketch();
   virtual void setup();
   virtual void loop();
   void onMessage();

@@ -1,8 +1,8 @@
-#include "GenericEspSketch.h"
+#include "EspMQTTSketch.h"
 
-extern GenericEspSketch esp;
+extern EspMQTTSketch esp;
 
-GenericEspSketch::GenericEspSketch(String mqttServer, char mqttPort, String mqttClientName, String wifiSSID, String wifiPassword, String devicePath){
+EspMQTTSketch::EspMQTTSketch(String mqttServer, char mqttPort, String mqttClientName, String wifiSSID, String wifiPassword, String devicePath){
   this->mqttServer = mqttServer;
   this->mqttPort = mqttPort;
   this->mqttClientName = mqttClientName;
@@ -11,25 +11,25 @@ GenericEspSketch::GenericEspSketch(String mqttServer, char mqttPort, String mqtt
   this->client = new PubSubClient(this->espClient);
 }
 
-GenericEspSketch::~GenericEspSketch(){
+EspMQTTSketch::~EspMQTTSketch(){
   delete this->client;
 }
 
-void GenericEspSketch::setDebug(bool debug){
+void EspMQTTSketch::setDebug(bool debug){
   this->debug = debug;
 }
 
-bool GenericEspSketch::isDebug(){
+bool EspMQTTSketch::isDebug(){
   return this->debug;
 }
 
-void GenericEspSketch::setup(){
+void EspMQTTSketch::setup(){
   Serial.begin(115200);
   this->initializeWifi();
   this->initializeEspPubSubClient();
 }
 
-void GenericEspSketch::loop(){
+void EspMQTTSketch::loop(){
   // put your main code here, to run repeatedly:
   if (!this->client->connected()) {
     this->reconnect();
@@ -38,7 +38,7 @@ void GenericEspSketch::loop(){
   delay(500);
 }
 
-void GenericEspSketch::reconnect(){
+void EspMQTTSketch::reconnect(){
   while (!this->client->connected()) {
     Serial.print("Attempting MQTT connection...");
     // Attempt to connect
@@ -57,11 +57,7 @@ void GenericEspSketch::reconnect(){
   }
 }
 
-void GenericEspSketch::onMessage(){
-
-}
-
-void GenericEspSketch::initializeWifi(){
+void EspMQTTSketch::initializeWifi(){
   delay(10);
   // We start by connecting to a WiFi network
   Serial.print("Connecting to ");
@@ -80,7 +76,7 @@ void GenericEspSketch::initializeWifi(){
   Serial.println(WiFi.localIP());
 }
 
-void GenericEspSketch::initializeEspPubSubClient(){
+void EspMQTTSketch::initializeEspPubSubClient(){
   this->client->setServer(this->mqttServer.c_str(), this->mqttPort);
 }
 
@@ -96,4 +92,8 @@ void callback(char* topic, byte* payload, unsigned int length) {
     }
     Serial.println();
   }
+}
+
+void EspMQTTSketch::onMessage(){
+
 }
