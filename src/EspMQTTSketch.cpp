@@ -2,12 +2,13 @@
 
 extern EspMQTTSketch esp;
 
-EspMQTTSketch::EspMQTTSketch(String mqttServer, char mqttPort, String mqttClientName, String wifiSSID, String wifiPassword, String devicePath){
+EspMQTTSketch::EspMQTTSketch(String mqttServer, char mqttPort, String mqttClientName, String wifiSSID, String wifiPassword, String mqttTopic){
   this->mqttServer = mqttServer;
   this->mqttPort = mqttPort;
   this->mqttClientName = mqttClientName;
   this->wifiSSID = wifiSSID;
   this->wifiPassword = wifiPassword;
+  this->mqttTopic = mqttTopic;
   this->client = new PubSubClient(this->espClient);
 }
 
