@@ -14,6 +14,8 @@
 #include <ESP8266mDNS.h>
 #include <WiFiUdp.h>
 #include <ArduinoOTA.h>
+#include "SmartThing.h"
+#include <stdlib.h>
 
 #ifndef __PUB_SUB_CALLBACK__
   #define __PUB_SUB_CALLBACK__
@@ -23,7 +25,7 @@
 
 class EspMQTTSketch{
 public:
-  EspMQTTSketch(String mqttServer, char mqttPort, String mqttClientName, String wifiSSID, String wifiPassword, String mqttTopic);
+  EspMQTTSketch(String mqttServer, int mqttPort, String mqttClientName, String wifiSSID, String wifiPassword, String mqttTopic);
   ~EspMQTTSketch();
   virtual void setup();
   virtual void loop();
@@ -32,17 +34,24 @@ public:
   void initializeEspPubSubClient();
   void setDebug(bool debug);
   bool isDebug();
+  SmartThing getSmartThing(){
+    return *this->smartThing;
+  };
+  void setSmartThing(SmartThing* thing){
+    this->smartThing = thing;
+  }
 protected:
   void reconnect();
   bool debug;
   String mqttServer;
-  char mqttPort;
+  int mqttPort;
   String mqttClientName;
   String wifiSSID;
   String wifiPassword;
   String mqttTopic;
   WiFiClient espClient;
   PubSubClient* client;
+  SmartThing* smartThing;
 };
 
 #endif
