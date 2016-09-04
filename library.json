@@ -1,5 +1,5 @@
 {
-    "name": "EspMqttLib",
+    "name": "esp-mqtt-lib",
     "keywords": "esp8266, mqtt",
     "description": "Generic implementation using ESP8266 & MQTT",
     "authors":
@@ -11,7 +11,7 @@
     "repository":
     {
         "type": "git",
-        "url": "https://github.com/thientran1986/esp-mqtt-lib.git"
+        "url": "https://github.com/tcthien/esp-mqtt-lib.git"
     },
     "version": "1.0.0",
     "dependencies":
@@ -22,5 +22,5 @@
       }
     ],
     "frameworks": "arduino",
-    "platforms": "espressif"
+    "platforms": "espressif8266"
 }
